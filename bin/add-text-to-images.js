@@ -51,14 +51,16 @@ async function writeHeadingToImage(fileName, heading) {
         i = i + 1
     }
 
-    const image = await Jimp.read(`./store/images/${fileName}`);
-    const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
+    const image = await Jimp.read(`./store/images/${fileName}`)
+    const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE)
 
     image.brightness(-.7)
 
     for (let j = 0; j < lines.length; j++) {
-        image.print(font, 10, 10 + j * 78, lines[j]);
+        image.print(font, 10, 10 + j * 78, lines[j])
     }
 
-    image.write(`./store/images-with-text/${fileName}`);
+    const newFilePath = `/store/images-with-text/${fileName}`
+    image.write('.' + newFilePath)
+    console.log(newFilePath)
 }
